@@ -1,0 +1,1 @@
+cmd_/opt/tdx-xwayland/xr17-lnx2.6.32-and-newer-pak/modules.order := {   echo /opt/tdx-xwayland/xr17-lnx2.6.32-and-newer-pak/xr17v35x.ko; :; } | awk '!x[$$0]++' - > /opt/tdx-xwayland/xr17-lnx2.6.32-and-newer-pak/modules.order

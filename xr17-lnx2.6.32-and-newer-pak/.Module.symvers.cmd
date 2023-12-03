@@ -1,0 +1,1 @@
+cmd_/opt/tdx-xwayland/xr17-lnx2.6.32-and-newer-pak/Module.symvers := sed 's/\.ko$$/\.o/' /opt/tdx-xwayland/xr17-lnx2.6.32-and-newer-pak/modules.order | scripts/mod/modpost -m   -o /opt/tdx-xwayland/xr17-lnx2.6.32-and-newer-pak/Module.symvers -e -i Module.symvers   -T -
