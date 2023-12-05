@@ -65,7 +65,8 @@ int main() {
 
     std::vector<uint8_t> command = {0x0F};
 
-    // Example transcieve call
+    transcieve(serialPort, {0xA5}, 1000, 100);
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
     std::vector<uint8_t> response = transcieve(serialPort, command, 1000, 100);
     std::cout << uint8_to_hex_string(response.data(), response.size()) << std::endl;
 
