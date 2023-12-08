@@ -3,7 +3,6 @@
 # Specify the directory name
 exar_dir="/home/root/xr17-lnx2.6.32-and-newer-pak"
 
-
 # Check if the directory exists
 if [ ! -d "$exar_dir" ]; then
   echo "Error: Directory $exar_dir does not exist."
@@ -12,6 +11,12 @@ fi
 
 # Change to the directory
 cd "$exar_dir" || exit 1
+
+# Check if ttyXR* ports already exist
+if ls /dev/ttyXR* 2>/dev/null; then
+  echo "Info: TTY ports already exist. Exiting without further actions."
+  exit 0
+fi
 
 # List exar_serial drivers in /sys/bus/pci/drivers
 ls /sys/bus/pci/drivers/exar_serial/
