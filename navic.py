@@ -5,7 +5,7 @@ port_name = "/dev/ttyXR6"
 baud_rate = 1000000
 
 # Corrected the variable name
-serial_port = serial.Serial(port_name, baud_rate, timeout=1)
+serial_port = serial.Serial(port_name, baud_rate)
 
 if serial_port:
     try:
@@ -18,7 +18,7 @@ if serial_port:
 
         Msg2.append(0x0F)
         serial_port.write(Msg2)
-        time.sleep(0.1)
+        # time.sleep(0.1)
 
         received_data = serial_port.read(40)
         hex_string = ' '.join([format(byte, '02x') for byte in received_data])
