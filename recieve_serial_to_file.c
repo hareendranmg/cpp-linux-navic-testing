@@ -7,6 +7,7 @@
 
 #define PORT_NAME "/dev/ttyXR0"
 #define BAUD_RATE B2000000
+#define OUTPUT_FILE "output_file.txt"
 
 int main() {
     int serial_port = open(PORT_NAME, O_RDWR);
@@ -45,21 +46,30 @@ int main() {
         return 1;
     }
 
+    FILE *output_file = fopen(OUTPUT_FILE, "w");
+
+    if (output_file == NULL) {
+        perror("Error opening output file");
+        close(serial_port);
+        return 1;
+    }
+
     char buffer[1];  // Buffer to read one character at a time
 
     while (1) {
         ssize_t read_size = read(serial_port, buffer, sizeof(buffer));
 
         if (read_size > 0) {
-            // Print the received character
-            printf("%c", buffer[0]);
-            fflush(stdout);  // Flush the output to ensure immediate printing
+            // Write the received character to the output file
+            fprintf(output_file, "%c", buffer[0]);
+            fflush(output_file);  // Flush the output to ensure immediate writing
         } else if (read_size < 0) {
             perror("Error reading from serial port");
             break;
         }
     }
 
+    fclose(output_file);
     close(serial_port);
 
     return 0;
